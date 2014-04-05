@@ -1,5 +1,7 @@
 #include "MainWindow.h"
 #include <QApplication>
+#include "AudioPlayer.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
