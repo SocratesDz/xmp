@@ -10,8 +10,14 @@
     <height>359</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>688</width>
+    <height>359</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>XMP</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_3">

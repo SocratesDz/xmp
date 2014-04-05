@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QTime>
+#include <QMediaPlayer>
 
 namespace Ui {
 class AudioPlayer;
@@ -23,6 +24,7 @@ public:
     bool isStopped();
     void setMedia(const QMediaContent& media);
     void setPlaylist(QMediaPlaylist* playlist);
+    QMediaPlaylist* getPlaylist();
 
 public slots:
     void play();

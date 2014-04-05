@@ -8,6 +8,7 @@ AudioPlayer::AudioPlayer(QWidget *parent) :
     ui(new Ui::AudioPlayer)
 {
     player = new QMediaPlayer();
+    playlist = new QMediaPlaylist();
 
     ui->setupUi(this);
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
@@ -67,9 +68,10 @@ void AudioPlayer::seek(int position) {
 
 void AudioPlayer::handleStates(QMediaPlayer::MediaStatus status) {
     switch(status) {
+        case QMediaPlayer::StoppedState:
         case QMediaPlayer::EndOfMedia:
             player->stop();
-            ui->progressSlider->setValue(0);
+            emit player->positionChanged(qint64(0));
             break;
         case QMediaPlayer::InvalidMedia:
             player->stop();
@@ -121,6 +123,10 @@ qint64 AudioPlayer::getDuration() {
     return player->duration();
 }
 
+QMediaPlaylist* AudioPlayer::getPlaylist() {
+    return playlist;
+}
+
 void AudioPlayer::setMedia(const QMediaContent &media) {
     player->setMedia(media);
 }
@@ -162,6 +168,9 @@ void AudioPlayer::createConnections() {
 
     // Si ocurre un estado en el reproductor, se maneja
     connect(player, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), this, SLOT(handleStates(QMediaPlayer::MediaStatus)));
+
+    // Si se cambia el slider del volumen, el volumen cambia
+    connect(ui->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(setVolume(int)));
 
     // Se conectan los botones con las acciones del reproductor
     connect(ui->playButton, SIGNAL(clicked()), this, SLOT(play()));
