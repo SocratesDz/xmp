@@ -1,32 +1,53 @@
 #ifndef AUDIOPLAYER_H
 #define AUDIOPLAYER_H
 
-#include <QtMultimedia/QMediaPlayer>
+#include <QWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include <QTime>
 
-class AudioPlayer
+namespace Ui {
+class AudioPlayer;
+}
+
+class AudioPlayer : public QWidget
 {
-    QMediaPlayer* player;
+    Q_OBJECT
+
 public:
-    AudioPlayer();
+    explicit AudioPlayer(QWidget *parent = 0);
+    ~AudioPlayer();
+    QString getPositionAndDurationString();
+    bool isPlaying();
+    bool isPaused();
+    bool isStopped();
+    void setMedia(const QMediaContent& media);
+    void setPlaylist(QMediaPlaylist* playlist);
+
+public slots:
     void play();
     void pause();
     void stop();
     void next();
     void prev();
-    void setMedia(const QMediaContent& media);
-    void setPlaylist(QMediaPlaylist* playlist);
+    void open();
+
+private slots:
+    void setPosition(qint64 position);
+    void setVolume(int volume);
+    void handleStates(QMediaPlayer::MediaStatus status);
+    void seek(int position);
+    void onPositionChanged(qint64 position);
+    void changeSlider(qint64 size);
+
+private:
+    Ui::AudioPlayer *ui;
+    QMediaPlayer* player;
+    QMediaPlaylist* playlist;
     qint64 getDuration();
     QTime getPositionTime();
     QTime getDurationTime();
-    QString getPositionAndDurationString();
-    void setPosition(qint64 position);
-    void setVolume(int volume);
-    QMediaPlayer* getBackendPlayer();
-
-    bool isPlaying();
-    bool isPaused();
-    bool isStopped();
+    void createConnections();
 };
 
 #endif // AUDIOPLAYER_H
