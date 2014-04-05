@@ -15,6 +15,7 @@ AudioPlayer::AudioPlayer(QWidget *parent) :
     ui->stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
     ui->nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
     ui->prevButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+
     createConnections();
 }
 
@@ -39,11 +40,13 @@ void AudioPlayer::stop() {
 }
 
 void AudioPlayer::prev() {
-
+    if(!playlist->isEmpty())
+        playlist->previous();
 }
 
 void AudioPlayer::next() {
-
+    if(!playlist->isEmpty())
+        playlist->next();
 }
 
 bool AudioPlayer::isPlaying() {

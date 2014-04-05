@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AudioPlayerUI</class>
- <widget class="QWidget" name="AudioPlayerUI">
+ <class>AudioPlayer</class>
+ <widget class="QWidget" name="AudioPlayer">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -91,9 +91,18 @@
         </spacer>
        </item>
        <item>
-        <widget class="QSlider" name="horizontalSlider">
+        <widget class="QSlider" name="volumeSlider">
+         <property name="maximum">
+          <number>100</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::NoTicks</enum>
+         </property>
+         <property name="tickInterval">
+          <number>0</number>
          </property>
         </widget>
        </item>

@@ -12,12 +12,15 @@ TARGET = XMP
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        MainWindow.cpp \
-    AudioPlayer.cpp
+SOURCES += \
+    AudioPlayer.cpp \
+    main.cpp \
+    MainWindow.cpp
 
-HEADERS  += MainWindow.h \
-    AudioPlayer.h
+HEADERS  += \
+    AudioPlayer.h \
+    MainWindow.h
 
-FORMS    += MainWindow.ui \
-    AudioPlayer.ui
+FORMS    += \
+    AudioPlayer.ui \
+    MainWindow.ui
