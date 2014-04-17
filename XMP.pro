@@ -15,12 +15,15 @@ TEMPLATE = app
 SOURCES += \
     AudioPlayer.cpp \
     main.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    Library.cpp
 
 HEADERS  += \
     AudioPlayer.h \
-    MainWindow.h
+    MainWindow.h \
+    Library.h
 
 FORMS    += \
     AudioPlayer.ui \
-    MainWindow.ui
+    MainWindow.ui \
+    Library.ui

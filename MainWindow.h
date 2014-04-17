@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "AudioPlayer.h"
-#include "AudioPlayer.h"
+#include "Library.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,9 +17,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void playSongFromLibrary();
+
 private:
     Ui::MainWindow *ui;
     AudioPlayer* player;
+    Library* library;
 };
 
 #endif // MAINWINDOW_H
