@@ -9,6 +9,7 @@ AudioPlayer::AudioPlayer(QWidget *parent) :
 {
     player = new QMediaPlayer();
     playlist = new QMediaPlaylist();
+    player->setPlaylist(playlist);
 
     ui->setupUi(this);
     ui->playButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
@@ -167,12 +168,12 @@ void AudioPlayer::addToPlayList(const QStringList &fileNames)
 }
 
 void AudioPlayer::open() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open an audio file"));
-    if(fileName.isEmpty()) return;
-    player->setMedia(QUrl::fromLocalFile(QFileInfo(fileName).absoluteFilePath()));
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Open files"));
+  /*  if(fileNames.isEmpty()) return;
+    player->setMedia(QUrl::fromLocalFile(QFileInfo(fileNames).absoluteFilePath()));
     player->stop();
-    player->play();
-   // addToPlayList(fileName);
+    player->play();*/
+    addToPlayList(fileNames);
 
 }
 

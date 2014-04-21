@@ -17,19 +17,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->playerLayout->addWidget(player); // Se agrega el widget a la ventana principal
     player->show(); // Se muestra el widget
 
+    //Set play list to reproductor
+    playList = new QMediaPlaylist();
+    player->setPlaylist(playList);
+
+    playListModel = new PlaylistModel(this);
+    playListModel->setPlaylist(playList);
+
+    playListView = new PlayList(this);
+    ui->listLayout->addWidget(playListView);
+
+    playListView->getListView()->setModel(playListModel);
+    playListView->getListView()->setCurrentIndex(playListModel->index(playList->currentIndex(), 0));
+    playListView->show();
+
     // Llamando al módulo de Librería
     library = new Library(this);
     ui->libraryLayout->addWidget(library);
     library->show();
 
-    // Llamando al módulo de Lista de Reproduccion
-    playList = new PlayList(this);
-    ui->listLayout->addWidget(playList);
-    playList->show();
-
     // Se conecta la acción del menú File->Open con la función open de AudioPlayer
     connect(ui->actionOpen, SIGNAL(triggered()), player, SLOT(open()));
-
 
     connect(ui->actionSelect_music_folder, SIGNAL(triggered()), library, SLOT(selectFolder()));
 

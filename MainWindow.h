@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "AudioPlayer.h"
 #include "Library.h"
+#include "PlayListModel.h"
 #include "PlayList.h"
 
 namespace Ui {
@@ -25,7 +26,9 @@ private:
     Ui::MainWindow *ui;
     AudioPlayer* player;
     Library* library;
-    PlayList* playList;
+    PlayList* playListView;
+    PlaylistModel* playListModel;
+    QMediaPlaylist* playList;
 };
 
 #endif // MAINWINDOW_H

@@ -11,7 +11,8 @@ PlayList::PlayList(QWidget *parent) :
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("Título")));
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Intérprete colaboradores")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Duración")));
-    ui->tableView->setModel(model);
+    //ui->tableView->setModel(model);
+
 
 }
 
@@ -21,6 +22,6 @@ PlayList::~PlayList()
     delete model;
 }
 
-QTableView* PlayList::getTableView() {
-    return ui->tableView;
+QListView* PlayList::getListView() {
+    return ui->listView;
 }

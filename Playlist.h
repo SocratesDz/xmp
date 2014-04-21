@@ -2,6 +2,7 @@
 #define PLAYLIST_H
 #include <QStandardItemModel>
 #include <QTableView>
+#include <QListView>
 #include <QWidget>
 
 namespace Ui {
@@ -16,6 +17,7 @@ public:
     explicit PlayList(QWidget *parent = 0);
     ~PlayList();
     QTableView* getTableView();
+    QListView* getListView();
 
 private:
     Ui::PlayList *ui;
