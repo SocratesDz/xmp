@@ -144,12 +144,36 @@ void AudioPlayer::setVolume(int volume) {
     player->setVolume(volume);
 }
 
+
+void AudioPlayer::addToPlayList(const QStringList &fileNames)
+{
+    foreach(const QString &argument, fileNames)
+    {
+        QFileInfo fileInfo(argument);
+        if (fileInfo.exists()) {
+            QUrl url = QUrl::fromLocalFile(fileInfo.absoluteFilePath());
+            if (fileInfo.suffix().toLower() == QLatin1String("m3u")) {
+                playlist->load(url);
+            } else {
+                playlist->addMedia(url);
+            }
+        } else {
+            QUrl url(argument);
+            if (url.isValid()) {
+                playlist->addMedia(url);
+            }
+        }
+    }
+}
+
 void AudioPlayer::open() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open an audio file"));
     if(fileName.isEmpty()) return;
     player->setMedia(QUrl::fromLocalFile(QFileInfo(fileName).absoluteFilePath()));
     player->stop();
     player->play();
+   // addToPlayList(fileName);
+
 }
 
 void AudioPlayer::changeSlider(qint64 size) {
@@ -179,3 +203,4 @@ void AudioPlayer::createConnections() {
     connect(ui->prevButton, SIGNAL(clicked()), this, SLOT(prev()));
     connect(ui->nextButton, SIGNAL(clicked()), this, SLOT(next()));
 }
+

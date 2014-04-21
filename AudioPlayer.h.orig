@@ -24,11 +24,11 @@ public:
     bool isStopped();
     void setMedia(const QMediaContent& media);
     void setPlaylist(QMediaPlaylist* playlist);
-
+<<<<<<< Updated upstream
     QMediaPlaylist* getPlaylist();
-
+=======
     void addToPlayList(const QStringList& fileNames);
-
+>>>>>>> Stashed changes
 
 public slots:
     void play();

@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->libraryLayout->addWidget(library);
     library->show();
 
+    // Llamando al módulo de Lista de Reproduccion
+    playList = new PlayList(this);
+    ui->listLayout->addWidget(playList);
+    playList->show();
+
     // Se conecta la acción del menú File->Open con la función open de AudioPlayer
     connect(ui->actionOpen, SIGNAL(triggered()), player, SLOT(open()));
 

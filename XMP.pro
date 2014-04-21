@@ -16,14 +16,18 @@ SOURCES += \
     AudioPlayer.cpp \
     main.cpp \
     MainWindow.cpp \
-    Library.cpp
+    Library.cpp \
+    Playlist.cpp
 
 HEADERS  += \
     AudioPlayer.h \
     MainWindow.h \
-    Library.h
+    Library.h \
+    Playlist.h \
+    Playlist.h
 
 FORMS    += \
     AudioPlayer.ui \
     MainWindow.ui \
+    Playlist.ui \
     Library.ui
