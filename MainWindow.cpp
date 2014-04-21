@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     playListView->getListView()->setCurrentIndex(playListModel->index(playList->currentIndex(), 0));
     playListView->show();
 
+    connect(playListView->getListView(), SIGNAL(activated(QModelIndex)), this, SLOT(onDoubleClickToMusic(QModelIndex)));
+
     // Llamando al módulo de Librería
     library = new Library(this);
     ui->libraryLayout->addWidget(library);
@@ -59,4 +61,11 @@ void MainWindow::playSongFromLibrary() {
     player->stop();
     player->setMedia(QUrl::fromLocalFile(filePath));
     player->play();
+}
+
+void MainWindow::onDoubleClickToMusic(const QModelIndex &index) {
+    if (index.isValid()) {
+        playList->setCurrentIndex(index.row());
+        player->play();
+    }
 }

@@ -21,6 +21,7 @@ public:
 
 public slots:
     void playSongFromLibrary();
+    void onDoubleClickToMusic(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
